@@ -16,12 +16,43 @@
 
 ### Installation
 
-1. Clone the repo
-2. Run npm/yarn install
-
 ```bash
-cd nestjs-package-starter
-npm install
+npm install @syukurilexs/nestjs-log
+```
+
+## Usage
+Import `LoggerModule`:
+
+```typescript
+imports: [LoggerModule.register()]
+```
+
+## Usage to writing log to Elasticsearch and Console
+Import `LoggerModule`:
+
+```typescript
+imports: [
+  LoggerModule.register({
+    elasticsearch: { node: 'http://localhost:9200', prefix: 'log-syukur' },
+  }),
+],
+```
+
+## Usage for Async method to writing log to Elasticsearch and Console
+Import `LoggerModule`:
+
+```typescript
+imports: [
+  LoggerModule.registerAsync({
+    imports: [ConfigModule],
+    useFactory: (config: ConfigService) => {
+      return {
+        elasticsearch: { node: config.get('URL'), prefix: 'log-syukur' },
+      };
+    },
+    inject: [ConfigService],
+  }),
+],
 ```
 
 ## Change Log
@@ -34,7 +65,7 @@ Contributions welcome! See [Contributing](CONTRIBUTING.md).
 
 ## Author
 
-**John Biundo (Y Prospect on [Discord](https://discord.gg/G7Qnnhy))**
+**Syukur**
 
 ## License
 
