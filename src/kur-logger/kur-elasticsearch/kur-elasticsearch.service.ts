@@ -1,4 +1,3 @@
-import { ElasticsearchService } from '@nestjs/elasticsearch';
 import { Inject, Injectable, Optional } from '@nestjs/common';
 import { LogConfig } from '../interface/log-config.interface';
 
@@ -6,19 +5,23 @@ import { LogConfig } from '../interface/log-config.interface';
 export class KurElasticsearchService {
   prefix = 'mylog';
   type = 'mytype';
+  client: any;
 
-  constructor(
-    @Optional() private readonly client: ElasticsearchService,
-    @Inject('KUR_OPTIONS') private readonly options: LogConfig
-  ) {
+  constructor(@Inject('KUR_OPTIONS') private readonly options: LogConfig) {
     if (options) {
       if (options.elasticsearch) {
         if (options.elasticsearch.prefix) {
           this.prefix = options.elasticsearch.prefix;
         }
+
         if (options.elasticsearch.type) {
           this.type = options.elasticsearch.type;
         }
+
+        import('@elastic/elasticsearch').then(x => 
+          this.client = new x.Client({ node: options.elasticsearch.node })
+        );
+
       }
     }
   }
