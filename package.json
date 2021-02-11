@@ -34,15 +34,13 @@
   "bugs": "https://github.com/syukurilexs/nestjs-log.git",
   "peerDependencies": {
     "@nestjs/common": "^7.0.0",
-    "@elastic/elasticsearch": "^7.10.0",
-    "@nestjs/elasticsearch": "^7.1.0"
+    "@elastic/elasticsearch": "^7.10.0"
   },
   "dependencies": {},
   "devDependencies": {
     "@elastic/elasticsearch": "^7.10.0",
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
-    "@nestjs/elasticsearch": "^7.1.0",
     "@nestjs/platform-express": "^7.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
