@@ -27,7 +27,13 @@ Import `LoggerModule`:
 imports: [LoggerModule.register()]
 ```
 
-## Usage to writing log to Elasticsearch and Console
+## Usage to write log to Elasticsearch and Console
+To use Elasticsearch for logging you need to install Elasticsearch package
+
+```bash
+npm install @elastic/elasticsearch
+```
+
 Import `LoggerModule`:
 
 ```typescript
@@ -38,7 +44,13 @@ imports: [
 ],
 ```
 
-## Usage for Async method to writing log to Elasticsearch and Console
+## Usage for Async method to write log to Elasticsearch and Console
+To use Elasticsearch for logging you need to install Elasticsearch package
+
+```bash
+npm install @elastic/elasticsearch
+```
+
 Import `LoggerModule`:
 
 ```typescript
@@ -65,7 +77,7 @@ Contributions welcome! See [Contributing](CONTRIBUTING.md).
 
 ## Author
 
-**Syukur**
+**Syukur [LinkedIn](https://www.linkedin.com/in/syukurilexs/)**
 
 ## License
 
