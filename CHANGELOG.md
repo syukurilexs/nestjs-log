@@ -9,3 +9,11 @@ Initial Release
 ### Changed
 - Update README
 - Remove unwanted package
+
+## [1.2.1] - 2021-02-26
+
+### Change
+- Update error to accept object trace
+
+### Added
+- Report Service
