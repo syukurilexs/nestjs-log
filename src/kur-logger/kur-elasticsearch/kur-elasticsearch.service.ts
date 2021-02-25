@@ -18,10 +18,10 @@ export class KurElasticsearchService {
           this.type = options.elasticsearch.type;
         }
 
-        import('@elastic/elasticsearch').then(x => 
-          this.client = new x.Client({ node: options.elasticsearch.node })
+        import('@elastic/elasticsearch').then(
+          (x) =>
+            (this.client = new x.Client({ node: options.elasticsearch.node }))
         );
-
       }
     }
   }
@@ -38,7 +38,7 @@ export class KurElasticsearchService {
     if (this.client) {
       try {
         await this.client.index({
-          index: this.formatFileName(this.prefix),
+          index: this.formatFileName('log-' + this.prefix),
           type: this.type,
           body: {
             timestamp: new Date(),
@@ -57,7 +57,7 @@ export class KurElasticsearchService {
     if (this.client) {
       try {
         await this.client.index({
-          index: this.formatFileName(this.prefix),
+          index: this.formatFileName('log-' + this.prefix),
           type: this.type,
           body: {
             timestamp: new Date(),
@@ -66,6 +66,31 @@ export class KurElasticsearchService {
             message,
             trace,
           },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
+  async send(body: Object, prefix?: string) {
+    let msg: { [key: string]: any };
+    msg = body;
+    msg.timestamp = new Date();
+
+    if (this.client) {
+      let index = 'report-';
+      if (prefix) {
+        index += prefix;
+      } else {
+        index += this.prefix;
+      }
+
+      try {
+        await this.client.index({
+          index: this.formatFileName(index),
+          type: this.type,
+          body: msg,
         });
       } catch (error) {
         console.error(error);

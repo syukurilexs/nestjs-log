@@ -26,6 +26,7 @@ Import `LoggerModule`:
 ```typescript
 imports: [LoggerModule.register()]
 ```
+This module is Global type, just import in module.app.js and can use it anywhere
 
 ## Usage to write log to Elasticsearch and Console
 To use Elasticsearch for logging you need to install Elasticsearch package
@@ -39,10 +40,15 @@ Import `LoggerModule`:
 ```typescript
 imports: [
   LoggerModule.register({
-    elasticsearch: { node: 'http://localhost:9200', prefix: 'log-syukur' },
+    elasticsearch: { node: 'http://localhost:9200', prefix: 'syukur' },
   }),
 ],
 ```
+
+### Options
+- node: elastic search url
+- prefix: index name (when us it with LoggerService it will append prefix ***log***), 
+and also today date, daily bucket)
 
 ## Usage for Async method to write log to Elasticsearch and Console
 To use Elasticsearch for logging you need to install Elasticsearch package
@@ -59,12 +65,32 @@ imports: [
     imports: [ConfigModule],
     useFactory: (config: ConfigService) => {
       return {
-        elasticsearch: { node: config.get('URL'), prefix: 'log-syukur' },
+        elasticsearch: { node: config.get('URL'), prefix: 'syukur' },
       };
     },
     inject: [ConfigService],
   }),
 ],
+```
+## Available Services 
+### LoggerService
+```typescript
+constructor(private readonly logger: ServiceLogger) {}
+
+myMethod() {
+  this.logger.log('This is message');
+  this.logger.ward('This is warning');
+  this.logger.error('This is error','This is tracing' | {key: value});
+}
+```
+### ReportService
+```typescript
+constructor(private readonly report: ReportService) {}
+
+myMethod() {
+  this.report.send({key: value, key2: value2});
+}
+
 ```
 
 ## Change Log

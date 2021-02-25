@@ -11,19 +11,27 @@ export class LoggerService extends Logger {
 
   log(message: string) {
     /* your implementation */
-    this.kurElasticsearchSvc.log(message,this.context);
+    this.kurElasticsearchSvc.log(message, this.context);
     super.log(message);
   }
 
-  error(message: string, trace?: string) {
+  error(message: string, trace?: string | object) {
     /* your implementation */
-    this.kurElasticsearchSvc.error(message,trace,this.context);
-    super.error(message, trace);
+    let trc: string;
+
+    if (trace instanceof Object) {
+      trc = JSON.stringify(trace);
+    } else {
+      trc = trace;
+    }
+
+    this.kurElasticsearchSvc.error(message, trc, this.context);
+    super.error(message, trc);
   }
 
   warn(message: string) {
     /* your implementation */
-    this.kurElasticsearchSvc.warn(message,this.context);
+    this.kurElasticsearchSvc.warn(message, this.context);
     super.warn(message);
   }
 

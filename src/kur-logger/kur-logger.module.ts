@@ -3,6 +3,7 @@ import { LogConfig } from './interface/log-config.interface';
 import { DynamicModule, Global, Module } from '@nestjs/common';
 import { LoggerService } from './kur-logger.service';
 import { KurElasticsearchService } from './kur-elasticsearch/kur-elasticsearch.service';
+import { ReportService } from './report-service.service';
 
 @Global()
 @Module({})
@@ -15,8 +16,9 @@ export class LoggerModule {
         LoggerService,
         { provide: 'KUR_OPTIONS', useValue: options },
         KurElasticsearchService,
+        ReportService,
       ],
-      exports: [LoggerService],
+      exports: [LoggerService, ReportService],
     };
   }
 
@@ -27,13 +29,14 @@ export class LoggerModule {
       providers: [
         LoggerService,
         KurElasticsearchService,
+        ReportService,
         {
           provide: 'KUR_OPTIONS',
           useFactory: options.useFactory,
           inject: options.inject || [],
         },
       ],
-      exports: [LoggerService],
+      exports: [LoggerService, ReportService],
     };
   }
 }
