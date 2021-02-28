@@ -47,7 +47,7 @@ imports: [
 
 ### Options
 - node: elastic search url
-- prefix: index name (when us it with LoggerService it will append prefix ***log***), 
+- prefix: index name (when use it with LoggerService it will append prefix ***log***), 
 and also today date, daily bucket)
 
 ## Usage for Async method to write log to Elasticsearch and Console
@@ -75,11 +75,11 @@ imports: [
 ## Available Services 
 ### LoggerService
 ```typescript
-constructor(private readonly logger: ServiceLogger) {}
+constructor(private readonly logger: LoggerService) {}
 
 myMethod() {
   this.logger.log('This is message');
-  this.logger.ward('This is warning');
+  this.logger.warn('This is warning');
   this.logger.error('This is error','This is tracing' | {key: value});
 }
 ```
