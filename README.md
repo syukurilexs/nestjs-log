@@ -80,7 +80,7 @@ constructor(private readonly logger: LoggerService) {}
 myMethod() {
   this.logger.log('This is message');
   this.logger.warn('This is warning');
-  this.logger.error('This is error','This is tracing' | {key: value});
+  this.logger.error('This is error','This is tracing' | {key: 'value'});
 }
 ```
 ### ReportService

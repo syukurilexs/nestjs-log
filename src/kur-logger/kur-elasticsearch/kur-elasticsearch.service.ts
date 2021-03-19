@@ -4,7 +4,6 @@ import { LogConfig } from '../interface/log-config.interface';
 @Injectable()
 export class KurElasticsearchService {
   prefix = 'mylog';
-  type = 'mytype';
   client: any;
 
   constructor(@Inject('KUR_OPTIONS') private readonly options: LogConfig) {
@@ -12,10 +11,6 @@ export class KurElasticsearchService {
       if (options.elasticsearch) {
         if (options.elasticsearch.prefix) {
           this.prefix = options.elasticsearch.prefix;
-        }
-
-        if (options.elasticsearch.type) {
-          this.type = options.elasticsearch.type;
         }
 
         import('@elastic/elasticsearch').then(
@@ -39,7 +34,6 @@ export class KurElasticsearchService {
       try {
         await this.client.index({
           index: this.formatFileName('log-' + this.prefix),
-          type: this.type,
           body: {
             timestamp: new Date(),
             level,
@@ -58,7 +52,6 @@ export class KurElasticsearchService {
       try {
         await this.client.index({
           index: this.formatFileName('log-' + this.prefix),
-          type: this.type,
           body: {
             timestamp: new Date(),
             level: 'error',
@@ -89,7 +82,6 @@ export class KurElasticsearchService {
       try {
         await this.client.index({
           index: this.formatFileName(index),
-          type: this.type,
           body: msg,
         });
       } catch (error) {
