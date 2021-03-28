@@ -1,14 +1,9 @@
 # Change Log
 
-## [1.0.0]
+## [1.3.0] - 2021-03-28
 
-Initial Release
-
-## [1.0.1] - 2021-02-12
-
-### Changed
-- Update README
-- Remove unwanted package
+### Added
+- Elasticsearch Date option for ***log*** and ***report***
 
 ## [1.2.1] - 2021-02-26
 
@@ -17,3 +12,13 @@ Initial Release
 
 ### Added
 - Report Service
+
+## [1.0.1] - 2021-02-12
+
+### Changed
+- Update README
+- Remove unwanted package
+
+## [1.0.0]
+
+Initial Release

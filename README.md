@@ -48,7 +48,13 @@ imports: [
 ### Options
 - node: elastic search url
 - prefix: index name (when use it with LoggerService it will append prefix ***log***), 
-and also today date, daily bucket)
+- date (default to YYYYMMDD, "." sperated)
+  - log
+  - report
+  - date format
+    - DATE_FORMAT.YYYYMMDD
+    - DATE_FORMAT.YYYYMM
+    - DATE_FORMAT.YYYY
 
 ## Usage for Async method to write log to Elasticsearch and Console
 To use Elasticsearch for logging you need to install Elasticsearch package
@@ -91,6 +97,10 @@ myMethod() {
   this.report.send({key: value, key2: value2});
 }
 
+// Add specific prefix per method call
+myMethod2() {
+  this.report.send({key: value, key2: value2},'prefix');
+}
 ```
 
 ## Change Log
