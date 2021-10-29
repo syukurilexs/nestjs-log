@@ -1,8 +1,8 @@
 import { KurElasticsearchService } from './kur-elasticsearch/kur-elasticsearch.service';
-import { Injectable, Logger, Scope } from '@nestjs/common';
+import { Injectable, Logger, Scope, ConsoleLogger } from '@nestjs/common';
 
 @Injectable({ scope: Scope.TRANSIENT })
-export class LoggerService extends Logger {
+export class LoggerService extends ConsoleLogger {
   context = 'LoggerService';
 
   constructor(private readonly kurElasticsearchSvc: KurElasticsearchService) {
@@ -26,7 +26,7 @@ export class LoggerService extends Logger {
     }
 
     this.kurElasticsearchSvc.error(message, trc, this.context);
-    super.error(message, trc);
+    super.error(message, trc, this.context);
   }
 
   warn(message: string) {
