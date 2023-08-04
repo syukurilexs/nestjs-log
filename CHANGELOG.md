@@ -1,5 +1,10 @@
 # Change Log
 
+## [4.0.0] - 2022-12-06
+
+### Change
+Change nestjs peer dependancy to version 10
+
 ## [3.0.0] - 2022-12-06
 
 ### Change

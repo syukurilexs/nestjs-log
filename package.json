@@ -1,6 +1,6 @@
 {
   "name": "@syukurilexs/nestjs-log",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "NestJS syukurilexs logger",
   "author": "Syukur <syukurilexs@gmail.com>",
   "license": "MIT",
@@ -34,7 +34,7 @@
   "bugs": "https://github.com/syukurilexs/nestjs-log.git",
   "peerDependencies": {
     "@elastic/elasticsearch": "^7.10.0",
-    "@nestjs/common": "^9.2.1"
+    "@nestjs/common": "^10.0.0"
   },
   "devDependencies": {
     "@elastic/elasticsearch": "^7.10.0",
